@@ -3,17 +3,15 @@ apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
 react {
-    // React Native configuration
+    entryFile = file("../../index.js")
+    hermesEnabled = true
 }
 
-
 def enableProguardInReleaseBuilds = false
-def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
     ndkVersion rootProject.ext.ndkVersion
     compileSdk rootProject.ext.compileSdkVersion
-
     namespace "com.manu.ai"
 
     defaultConfig {
