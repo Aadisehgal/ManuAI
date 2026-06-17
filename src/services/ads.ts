@@ -12,7 +12,7 @@ import {
 const PUBLISHER_ID = 'ca-app-pub-3684441716460567';
 const BANNER_UNIT_ID = `${PUBLISHER_ID}/7116352504`;
 const REWARDED_UNIT_ID = `${PUBLISHER_ID}/7885822933`;
-const INTERSTITIAL_UNIT_ID = `${PUBLISHER_ID}/1234567890`;
+const INTERSTITIAL_UNIT_ID = `${PUBLISHER_ID}/4188433698`;
 
 let rewardedAd: RewardedAd | null = null;
 let interstitialAd: InterstitialAd | null = null;
