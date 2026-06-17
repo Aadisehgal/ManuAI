@@ -1,6 +1,7 @@
 package com.manu.ai
 
 import android.app.Application
+import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
 import com.facebook.react.ReactNativeHost
@@ -8,22 +9,20 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
-import com.facebook.react.shell.MainReactPackage
-import com.reactnativemmkv.MmkvPackage
 
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
       object : DefaultReactNativeHost(this) {
-        override fun getPackages(): List<ReactPackage> = listOf(
-          MainReactPackage(),
-          MmkvPackage(),
-          AppIntentsPackage(),
-          SpeechRecognitionPackage(),
-          NotificationPackage(),
-          AccessibilityPackage(),
-          UsageStatsPackage()
-        )
+        override fun getPackages(): List<ReactPackage> {
+          val packages = PackageList(this).packages
+          packages.add(AppIntentsPackage())
+          packages.add(SpeechRecognitionPackage())
+          packages.add(NotificationPackage())
+          packages.add(AccessibilityPackage())
+          packages.add(UsageStatsPackage())
+          return packages
+        }
         override fun getJSMainModuleName(): String = "index"
         override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
         override val isNewArchEnabled: Boolean = false
