@@ -12,28 +12,28 @@ import com.facebook.soloader.SoLoader
 
 class MainApplication : Application(), ReactApplication {
 
-  override val reactNativeHost: ReactNativeHost =
-      object : DefaultReactNativeHost(this) {
-        override fun getPackages(): List<ReactPackage> {
-          val packages = PackageList(this).packages
-          packages.add(AppIntentsPackage())
-          packages.add(SpeechRecognitionPackage())
-          packages.add(NotificationPackage())
-          packages.add(AccessibilityPackage())
-          packages.add(UsageStatsPackage())
-          return packages
+    override val reactNativeHost: ReactNativeHost =
+        object : DefaultReactNativeHost(this) {
+            override fun getPackages(): List<ReactPackage> {
+                val packages = PackageList(this).packages
+                packages.add(AppIntentsPackage())
+                packages.add(SpeechRecognitionPackage())
+                packages.add(NotificationPackage())
+                packages.add(AccessibilityPackage())
+                packages.add(UsageStatsPackage())
+                return packages
+            }
+            override fun getJSMainModuleName(): String = "index"
+            override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+            override val isNewArchEnabled: Boolean = false
+            override val isHermesEnabled: Boolean = true
         }
-        override fun getJSMainModuleName(): String = "index"
-        override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
-        override val isNewArchEnabled: Boolean = false
-        override val isHermesEnabled: Boolean = true
-      }
 
-  override val reactHost: ReactHost
-    get() = getDefaultReactHost(applicationContext, reactNativeHost)
+    override val reactHost: ReactHost
+        get() = getDefaultReactHost(applicationContext, reactNativeHost)
 
-  override fun onCreate() {
-    super.onCreate()
-    SoLoader.init(this, false)
-  }
+    override fun onCreate() {
+        super.onCreate()
+        SoLoader.init(this, false)
+    }
 }
