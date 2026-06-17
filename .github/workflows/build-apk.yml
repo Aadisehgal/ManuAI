@@ -24,8 +24,8 @@ jobs:
       - name: Patch react-native version in all node_modules
         run: |
           find node_modules -name "build.gradle" | while read f; do
-            sed -i "s|['"]com\.facebook\.react:react-native:+['"]|'com.facebook.react:react-android:0.74.3'|g" "$f"
-            sed -i "s|['"]com\.facebook\.react:react-native:[^'"]*['"]|'com.facebook.react:react-android:0.74.3'|g" "$f"
+            sed -i "s|['\"]com\.facebook\.react:react-native:+['\"]|'com.facebook.react:react-android:0.74.3'|g" "$f"
+            sed -i "s|['\"]com\.facebook\.react:react-native:[^'\"]*['\"]|'com.facebook.react:react-android:0.74.3'|g" "$f"
           done
       - name: Fix buildConfig for modules
         run: |
@@ -44,7 +44,7 @@ jobs:
             if [ -f "$manifest" ]; then
               pkg=$(grep -o 'package="[^"]*"' "$manifest" | head -1 | sed 's/package="//;s/"//')
               if [ -n "$pkg" ]; then
-                sed -i "/^android {/a\    namespace "$pkg"" "$f"
+                sed -i "/^android {/a\\    namespace \"$pkg\"" "$f"
               fi
             fi
           done
