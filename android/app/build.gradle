@@ -8,6 +8,7 @@ android {
     namespace "com.manu.ai"
 
     defaultConfig {
+        manifestPlaceholders = [admobAppId: "ca-app-pub-3684441716460567~5579379323"]
         applicationId "com.manu.ai"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
