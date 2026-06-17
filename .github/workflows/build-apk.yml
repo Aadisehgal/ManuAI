@@ -58,6 +58,13 @@ jobs:
           done
       - name: Setup release keystore
         run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/manu-release.keystore
+      - name: Generate PackageList
+        run: |
+          cd android && chmod +x gradlew
+          ./gradlew generatePackageList --no-daemon || true
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
       - name: Build JS bundle
         run: |
           mkdir -p android/app/src/main/assets
